@@ -1,0 +1,22 @@
+<TableDefinition TableName='retinopathy_sample_data' Action='create'>
+  <Columns>
+    <Column Name='anon_pat_id' Type='numeric'/>
+    <Column Name='event_measure_id' Type='numeric'/>
+    <Column Name='event_type_id' Type='text'/>
+    <Column Name='event_type' Type='text'/>
+    <Column Name='event_result' Type='numeric'/>
+    <Column Name='event_result_text' Type='text'/>
+    <Column Name='event_dt' Type='text'/>
+    <Column Name='created_dt' Type='timestamp without time zone'/>
+    <Column Name='retinal_id' Type='numeric'/>
+    <Column Name='score' Type='numeric'/>
+    <Column Name='location' Type='text'/>
+    <Column Name='clinician' Type='text'/>
+    <Column Name='description' Type='text'/>
+    <Column Name='name' Type='text'/>
+    <Column Name='gender' Type='text'/>
+  </Columns>
+  <Format Delimiter=',' TextQualifier='&quot;' Encoding='UTF-8' Header='true' HeaderCase='lower' DateFormat='ISO, DMY' CopyToFile='false'/>
+  <Success RemovefromUpload='true'/>
+  <Fail RemovefromUpload='false'/>
+</TableDefinition>
