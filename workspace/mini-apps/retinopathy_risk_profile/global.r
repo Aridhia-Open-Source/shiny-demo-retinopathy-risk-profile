@@ -1,1 +1,5 @@
-source("xap_wrapper.r")
+
+xap.require(
+  "shinydashboard",
+  "dplyr"
+)

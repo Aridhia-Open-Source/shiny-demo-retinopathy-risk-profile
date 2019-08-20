@@ -1,5 +1,3 @@
-install.packages("shinydashboard")
-library(shinydashboard)
 # Read in dataset 
 dataset <- xap.read_table("retinopathy_sample_data")
 
@@ -10,8 +8,9 @@ body <- dashboardBody(
   # Patient banner
   fluidRow(
     box(width = 12,
-        uiOutput("patient_banner")
-        )),
+      uiOutput("patient_banner")
+    )
+  ),
   
   # "Risk Assessment - Diabetic Retinopathy" box
   fluidRow(
@@ -22,66 +21,53 @@ body <- dashboardBody(
         
       # Left image  
       box(
-         width = 3,
-         uiOutput('logo_l'),
-         br(),
-         "Left Eye",
-          br(),
-          paste0("Image captured: 22-Sep-2015")
-         ),
+        width = 3,
+        uiOutput("logo_l"),
+        br(),
+        "Left Eye",
+        br(),
+        paste0("Image captured: 22-Sep-2015")
+      ),
         
       # Right image  
       box(
-         width = 3,
-         uiOutput('logo_r'),
-         br(),
-         "Right Eye",
-         br(),
-         paste0("Image captured: 22-Sep-2015")
-         ),
+        width = 3,
+        uiOutput("logo_r"),
+        br(),
+        "Right Eye",
+        br(),
+        paste0("Image captured: 22-Sep-2015")
+      ),
         
       # Retinopathy Score and Descriptive text  
       box(
-         uiOutput('choose_symbol'),
-         paste0("Risk scoring 22-Sep-2015"),
-         br(),
-         br(),
-         HTML("<p>Diabetic retinopathy is a common complication of diabetes. It occurs when high blood sugar levels damage the cells at the back of the eye (known as the retina). If it isn't treated, it can cause blindness.</p>
-               <p>It's important for people with diabetes to control their blood sugar levels. Everyone with diabetes who is 12 years old or over should have their eyes examined once a year for signs of damage.</p>
-               <p>All people with diabetes are at risk of getting diabetic retinopathy, but good control of blood sugar levels, cholesterol and blood pressure minimises this risk.</p>"),
-         br(),
-         HTML("<a href=\"http://www.nhs.uk/conditions/diabetic-retinopathy/Pages/Introduction.aspx\" target='_blank' class=\"btn btn-info btn-md\" role=\"button\"><i class=\"fa fa-question\"></i> Find out more</a>"),
-         width = 6
-         )
-       )
-    ),
+        uiOutput("choose_symbol"),
+        paste0("Risk scoring 22-Sep-2015"),
+        br(),
+        br(),
+        HTML("<p>Diabetic retinopathy is a common complication of diabetes. It occurs when high blood sugar levels damage the cells at the back of the eye (known as the retina). If it isn't treated, it can cause blindness.</p>
+             <p>It's important for people with diabetes to control their blood sugar levels. Everyone with diabetes who is 12 years old or over should have their eyes examined once a year for signs of damage.</p>
+             <p>All people with diabetes are at risk of getting diabetic retinopathy, but good control of blood sugar levels, cholesterol and blood pressure minimises this risk.</p>"),
+        br(),
+        HTML("<a href=\"http://www.nhs.uk/conditions/diabetic-retinopathy/Pages/Introduction.aspx\" target='_blank' class=\"btn btn-info btn-md\" role=\"button\"><i class=\"fa fa-question\"></i> Find out more</a>"),
+        width = 6
+      )
+    )
+  ),
   
   # Clinical History table
   fluidRow(
     box(
-       title = "Clinical History - EHR",
-       width = 12,
-       solidHeader = TRUE, 
-       status = "primary",
-       dataTableOutput('clin_history'),
-       br(),
-       tags$p(actionButton("increment", "Next Patient", icon = icon("arrow-right"))),
-       tags$style(type='text/css', "#increment { width: 10%; float:right;}")
-       )
+      title = "Clinical History - EHR",
+      width = 12,
+      solidHeader = TRUE, 
+      status = "primary",
+      dataTableOutput("clin_history"),
+      br(),
+      tags$p(actionButton("increment", "Next Patient", icon = icon("arrow-right"))),
+      tags$style(type = "text/css", "#increment { width: 10%; float:right;}")
+    )
   ),
-  
-  # Patient id selecter
-  #fluidRow(#column(width = 10),
-           #column(width = 12,
-   #               box(status = "primary",
-                  #selectInput("select_id",
-                  #            label = "ID", 
-                  #            choices = unique(dataset$retinal_id)),
-                  #tags$p(actionButton("increment", "Next Patient", icon = icon("arrow-right"))), 
-                  #tags$style(type='text/css', "#increment { vertical-align: top; }"),    
-    #              width = 12)#)
-  #),
-  
   
   # CSS styling   
   tags$head(tags$style(HTML('
@@ -136,20 +122,22 @@ body <- dashboardBody(
         border-color: #6A3163;
     }
 
-/*	.btn-default {
-		width:195px;
+    /*
+    .btn-default {
+		    width:195px;
         font-size:1.5em;
-	} */	
+	  } 
+    */	
 
     .btn-info:hover,
     .btn-info:focus,
     .btn-info.focus,
-	.btn-default:hover,
-	.btn-default.hover,
+	  .btn-default:hover,
+	  .btn-default.hover,
     .btn-default:focus, 
     .btn-default.focus,
     .open>.dropdown-toggle.btn-info,
-	.open>.dropdown-toggle.btn-default{
+	  .open>.dropdown-toggle.btn-default {
         color: #fff;
         background-color: #F05927 !important;
         border-color: #F05927;
@@ -159,16 +147,15 @@ body <- dashboardBody(
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 
-	.strokeme {
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-    letter-spacing: 2px;
+	  .strokeme {
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+        letter-spacing: 2px;
     }
-')))
-
+  ')))
 )
 
 # Disable header and sidebar, and add body of app
