@@ -1,11 +1,8 @@
-# Read in data set
-dataset <- xap.read_table("retinopathy_sample_data")
-ids <- unique(dataset$retinal_id)
 
-shinyServer(function(input, output, session) {
+server <- function(input, output, session) {
   
   # Add folder to store images for app
-  addResourcePath("images", getwd())
+  addResourcePath("images", "images")
   
   values <- reactiveValues(i = 1)
   
@@ -102,4 +99,4 @@ shinyServer(function(input, output, session) {
   }, options = list(pageLength = 5, searching = FALSE, lengthChange = FALSE, 
                     columnDefs = list(list(targets = c(0:6), searchable = FALSE)))
   )
-})
+}

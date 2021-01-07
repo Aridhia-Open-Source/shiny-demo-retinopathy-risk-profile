@@ -1,5 +1,3 @@
-# Read in dataset 
-dataset <- xap.read_table("retinopathy_sample_data")
 
 # Create body of mini-app
 body <- dashboardBody(
