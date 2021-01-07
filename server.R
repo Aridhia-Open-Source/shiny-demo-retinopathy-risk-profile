@@ -48,55 +48,35 @@ server <- function(input, output, session) {
     img(src = filename_right(), width = "100%")
   })
   
+  # function for ui chunk with checked circles and text
+  checked_ui <- function(which_checked, text) {
+    colours <- c("green", "yellow", "orange", "red", "DarkRed")
+    classes <- rep('"fa fa-circle-thin fa-5x"', 5)
+    classes[which_checked] <- '"fa fa-check-circle fa-5x"'
+    lines <- paste0("<i class =", classes, " style=\"color: ", colours, ";\"></i>")
+    lines <- paste(lines, collapse = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;")
+    
+    final_line <- paste0("<div class=\"strokeme\"><h2 style=\"color: ", colours[which_checked], ";\"><b>", text, "</b></h2></div>")
+    HTML(paste0(lines, final_line))
+  }
+  
   # Generate correct symbols & description to display for patients score
   output$choose_symbol <- renderUI({
-    if (dataset$score[dataset$retinal_id == ids[values$i]][1] == 0){  
-      HTML("<i class=\"fa fa-check-circle fa-5x\" style=\"color: green;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: yellow;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: orange;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: red;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: DarkRed;\"></i><br>
-            <div class=\"strokeme\"><h2 style=\"color: green;\"><b>None</b></h2></div>")
-     } else if (dataset$score[dataset$retinal_id == ids[values$i]][1] == 1){
-      HTML("<i class=\"fa fa-circle-thin fa-5x\" style=\"color: green;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-check-circle fa-5x\" style=\"color: yellow;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: orange;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: red;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: DarkRed;\"></i><br>
-            <div class=\"strokeme\"><h2 style=\"color: yellow;\"><b>Mild</b></h2></div>")
-     } else if (dataset$score[dataset$retinal_id == ids[values$i]][1] == 2){ 
-      HTML("<i class=\"fa fa-circle-thin fa-5x\" style=\"color: green;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: yellow;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-check-circle fa-5x\" style=\"color: orange;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: red;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: DarkRed;\"></i><br>
-            <div class=\"strokeme\"><h2 style=\"color: orange;\"><b>Moderate</b></h2></div>")
-     } else if (dataset$score[dataset$retinal_id == ids[values$i]][1] == 3){ 
-      HTML("<i class=\"fa fa-circle-thin fa-5x\" style=\"color: green;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: yellow;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: orange;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-check-circle fa-5x\" style=\"color: red;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: DarkRed;\"></i><br>
-            <div class=\"strokeme\"><h2 style=\"color: red;\"><b>Severe</b></h2></div>")
-    } else if (dataset$score[dataset$retinal_id == ids[values$i]][1] == 4){
-      HTML("<i class=\"fa fa-circle-thin fa-5x\" style=\"color: green;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: yellow;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: orange;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-circle-thin fa-5x\" style=\"color: red;\"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class=\"fa fa-check-circle fa-5x\" style=\"color: DarkRed;\"></i><br>
-            <div class=\"strokeme\"><h2 style=\"color: DarkRed;\"><b>Proliferative</b></h2></div>")
-    }
+    which_checked <- dataset$score[dataset$retinal_id == ids[values$i]][1] + 1
+    text <- switch(which_checked, "None", "Mild", "Moderate", "Severe", "Proliferative")
+    checked_ui(which_checked, text)
   })
   
   # Generate clinical history table for selected patient
   output$clin_history <- renderDataTable({
-    dt <- dataset[dataset$retinal_id == ids[values$i], c("event_dt", "location", "clinician", "event_type", "description", "event_result", "event_measure_id")]
+    dt <- dataset[dataset$retinal_id == ids[values$i], c("event_dt", "location", "clinician", "event_type",
+                                                         "description", "event_result", "event_measure_id")]
     names(dt) <- c("Date", "Location", "Clinician", "Event", "Description", "Result", "Code")
     dt %>% 
       filter(!is.na(Date)) %>%
       arrange(desc(Date)) %>%
       mutate(Result = round(Result, 1), Code = round(Code, 1))
   }, options = list(pageLength = 5, searching = FALSE, lengthChange = FALSE, 
-                    columnDefs = list(list(targets = c(0:6), searchable = FALSE)))
+                    columnDefs = list(list(targets = 0:6, searchable = FALSE)))
   )
 }
