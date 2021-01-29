@@ -1,3 +1,7 @@
+################
+###### UI ######
+################
+
 
 # Create body of mini-app
 body <- dashboardBody(
@@ -7,6 +11,9 @@ body <- dashboardBody(
   # Patient banner
   fluidRow(
     box(width = 12,
+        title = "Patient Information",
+        status = "primary",
+        solidHeader = TRUE,
       uiOutput("patient_banner")
     )
   ),
@@ -68,6 +75,18 @@ body <- dashboardBody(
       br(),
       tags$p(actionButton("increment", "Next Patient", icon = icon("arrow-right"))),
       tags$style(type = "text/css", "#increment { width: 10%; float:right;}")
+    )
+  ),
+  # Help 
+  fluidRow(
+    box(
+      title = "Help",
+      width = 12,
+      solidHeader = TRUE,
+      status = "primary",
+      collapsible = TRUE,
+      collapsed = TRUE,
+      documentation_tab()
     )
   )
 )
