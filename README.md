@@ -1,6 +1,7 @@
 # Retinopathy Risk
 
 **Retinopathy** is characterised by a damaged retina, which is the back of the eyes and the surface that senses light. Retinopathy is normally caused by an abnormal blood flow to the retina, which can appear due to several diseases and can lead to partial or complete loss of vision. 
+
 **Diabetic Retinopathy** is the ocular manifestation of diabetes and is the most common cause of retinopathy. In those cases, the persistent high blood sugar levels in diabetic patients cause damage in the retina's blood vessels. 
 
 This RShiny mini-app provides a reinopathy image viewer and a calculated risk score for each patient, as well as, the clinical history of the patient.
