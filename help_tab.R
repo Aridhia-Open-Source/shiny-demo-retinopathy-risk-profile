@@ -4,7 +4,7 @@ documentation_tab <- function() {
                      fluidRow(column(
                        6,
                        h2("Retinopathy Risk"), 
-                       p("Very briefly, retinopathy is defined as any dmage to the back of the eyes of the eyes (retina), which can cause impared vision.
+                       p("Very briefly, retinopathy is defined as any dmage to the back of the eyes (retina), which can cause impared vision.
                        High blood sugar levels in diabetic patients can lead damage in the retina, this is a diabetic retinopathy and may lead to blindness if untreated."),
                        p("This RShiny mini-app provides a reinopathy image viewer and a calculated risk score for each patient, as well as, the clinical history of the patient."),
                        
