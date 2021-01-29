@@ -9,7 +9,7 @@ documentation_tab <- function() {
                        p("This RShiny mini-app provides a reinopathy image viewer and a calculated risk score for each patient, as well as, the clinical history of the patient."),
                        
                        h3("How to use the app"),
-                       p("This app is formed by thre distinguished boxes:"),
+                       p("This app is formed by three distinguished boxes:"),
                        tags$ol(
                          tags$li("The first box contains the information of the current patient. Here you can see the name, date of birth (DOB), 
                                           gender and address of the patient, amongst others"),
@@ -18,7 +18,7 @@ documentation_tab <- function() {
                          tags$li("The next box displays the clinical history of the patient. You can sort the table clicking on the different column names. Just below the table, there is
                                  the button to jump to the next patient.")
                        ),
-                       p("The data being used by the app is" )),
+                      ),
                      column(
                        6,
                        h2("Walkthrough video"),
