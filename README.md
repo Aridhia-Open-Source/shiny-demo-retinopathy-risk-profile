@@ -19,7 +19,7 @@ This app is formed by three distinguished boxes:
 You can clone this repository by using the command:
 
 ```
-git clone https://github.com/aridhia/demo-retinopathy-risk-profile
+git clone https://github.com/Aridhia-Open-Source/shiny-demo-retinopathy-risk-profile
 ```
 
 Open the .Rproj file in RStudio and use `runApp()` to start the app.
