@@ -58,7 +58,7 @@ body <- dashboardBody(
         p("All people with diabetes are at risk of getting diabetic retinopathy, but good control of blood sugar levels,
           cholesterol and blood pressure minimises this risk."),
         br(),
-        HTML("<a href=\"http://www.nhs.uk/conditions/diabetic-retinopathy/Pages/Introduction.aspx\" target='_blank' class=\"btn btn-info btn-md\" role=\"button\"><i class=\"fa fa-question\"></i> Find out more</a>"),
+        HTML("<a href=\"http://www.nhs.uk/conditions/diabetic-retinopathy\" target='_blank' class=\"btn btn-info btn-md\" role=\"button\"><i class=\"fa fa-question\"></i> Find out more</a>"),
         width = 6
       )
     )
