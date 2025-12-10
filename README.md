@@ -4,7 +4,7 @@
 
 **Diabetic Retinopathy** is the ocular manifestation of diabetes and is the most common cause of retinopathy. In those cases, the persistent high blood sugar levels in diabetic patients cause damage in the retina's blood vessels. 
 
-This RShiny mini-app provides a reinopathy image viewer and a calculated risk score for each patient, as well as, the clinical history of the patient.
+This R web app provides a reinopathy image viewer and a calculated risk score for each patient, as well as, the clinical history of the patient.
 
 ## About the mini-app
 
@@ -27,7 +27,7 @@ Open the .Rproj file in RStudio and use `runApp()` to start the app.
 ### Deploying to the workspace
 
 1. Download this GitHub repo as a .zip file.
-2. Create a new blank Shiny app in your workspace called "retinopathy-risk-profile".
+2. Create a new blank R web app in your workspace called "retinopathy-risk-profile".
 3. Navigate to the `retinopathy-risk-profile` folder under "files".
 4. Delete the `app.R` file from the `retinopathy-risk-profile` folder. Make sure you keep the `.version` file!
 5. Upload the .zip file to the `retinopathy-risk-profile` folder.
